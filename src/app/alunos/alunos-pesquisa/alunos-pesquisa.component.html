@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="ui-g ui-fluid" >
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+      <div class="ui-g-12">
+        <h1>Alunos</h1>
+      </div>
+
+      <div class="ui-g-12">
+        <span class="ui-float-label">
+          <input id="float-input" type="text" pInputText name="nome" [(ngModel)]="filtro.nome">
+          <label for="float-input">Nome</label>
+        </span>
+      </div>
+
+      <div class="ui-g-12">
+        <span class="ui-float-label">
+          <input id="float-input" type="text" pInputText name="matricula" [(ngModel)]="filtro.matricula">
+          <label for="float-input">Matrícula</label>
+        </span>
+      </div>
+
+      <div class="ui-g-6">
+        <label>Edital</label>
+        <p-dropdown [options]="editais" placeholder="Selecione"
+        [autoWidth]="false" [filter]="true" name="edital"
+        [(ngModel)]="filtro.edital" optionLabel="numero"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12">
+        <button class="btn" type="submit" pTooltip="Filtrar">
+          <i aria-hidden="true" class="fa fa-filter"></i>
+          Filtrar
+        </button>
+        <button class="btn" style="float: right" pTooltip="Novo aluno" routerLink="/alunos/novo">
+          <i aria-hidden="true" class="fa fa-plus"></i>
+          Novo
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="alunos" [responsive]="true" emptyMessage="Nenhum aluno encontrado" [paginator]="true" [rows]="filtro.itensPorPagina"
+        [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+
+        <p-column field="nome" header="Nome"></p-column>
+        <p-column field="login" header="Matrícula"></p-column>
+        <p-column field="edital" header="Edital"></p-column>
+        <p-column field="ativo" header="Conta">
+          <ng-template let-alu="rowData" pTemplate="body">
+            <span [style.color]="alu.ativo ? '#20B2AA' : '#CD0000'">{{alu.ativo ? 'Ativa' : 'Inativa'}}</span>
+          </ng-template>
+        </p-column>
+        <p-column>
+          <ng-template let-alu="rowData" pTemplate="body">
+
+            <button class="btn" pTooltip="Editar" tooltipPosition="top"
+            [routerLink]="['/alunos', alu.codigo]">
+              <i aria-hidden="true" class="fa fa-pencil"></i>
+            </button>
+
+            <button class="btn" [style.display]="alu.ativo ? 'inline' : 'none'" pTooltip="Inativar conta" tooltipPosition="top" (click)="confirmarExclusao(alu)">
+              <i aria-hidden="true" class="fa fa-chevron-down"></i>
+            </button>
+
+            <button class="btn" [style.display]="!alu.ativo ? 'inline' : 'none'" pTooltip="Reativar conta" tooltipPosition="top" (click)="reativarAluno(alu)">
+              <i aria-hidden="true" class="fa fa-chevron-up"></i>
+            </button>
+
+          </ng-template>
+        </p-column>
+
+      </p-dataTable>
+    </div>
+
+  </div>
+
+</div>

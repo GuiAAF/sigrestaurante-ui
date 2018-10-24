@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+      <div class="ui-g-12">
+        <h1>Editais</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <span class="ui-float-label">
+          <input id="float-input" type="text" pInputText name="numero" [(ngModel)]="filtro.numero">
+          <label for="float-input">Número</label>
+        </span>
+      </div>
+
+      <div class="ui-g-12">
+        <label style="display: block">Data de vigência</label>
+        <p-calendar dateFormat="dd/mm/yy"  name="dataInicioMaiorQue" [(ngModel)]="filtro.dataInicioMaiorQue"></p-calendar>
+        <label>até</label>
+        <p-calendar dateFormat="dd/mm/yy"  name="dataTerminoMenorQue" [(ngModel)]="filtro.dataTerminoMenorQue"></p-calendar>
+      </div>
+
+      <div class="ui-g-12">
+        <button class="btn" type="submit" pTooltip="Filtrar">
+          <i aria-hidden="true" class="fa fa-filter"></i>
+          Filtrar
+        </button>
+        <button class="btn" style="float: right" pTooltip="Novo aluno" routerLink="/editais/novo">
+          <i aria-hidden="true" class="fa fa-plus"></i>
+          Novo
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="editais" [responsive]="true" emptyMessage="Nenhum edital encontrado" [paginator]="true" [rows]="filtro.itensPorPagina"
+        [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+
+        <p-column field="numero" header="Número"></p-column>
+        <p-column field="dataInicio" header="Data de início">
+          <ng-template let-edt="rowData" pTemplate="body">
+            <span>{{ edt.dataInicio | date:'dd/MM/yyyy' }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="dataTermino" header="Data de termino">
+          <ng-template let-edt="rowData" pTemplate="body">
+            <span>{{ edt.dataTermino | date:'dd/MM/yyyy' }}</span>
+          </ng-template>
+        </p-column>
+        <p-column header="Status">
+          <ng-template let-edt="rowData" pTemplate="body">
+            <span [style.color]="edt.vigente ? '#20B2AA' : '#CD0000'">{{edt.vigente ? 'Ativo' : 'Inativo'}}</span>
+          </ng-template>
+        </p-column>
+        <p-column>
+          <ng-template let-edt="rowData" pTemplate="body">
+            <button class="btn" pTooltip="Editar" tooltipPosition="top"
+            [routerLink]="['/editais', edt.codigo]">
+              <i aria-hidden="true" class="fa fa-pencil"></i>
+            </button>
+
+            <button class="btn" [style.display]="edt.vigente ? 'inline' : 'none'" pTooltip="Inativar edital" tooltipPosition="top" (click)="confirmarInatividade(edt)">
+              <i aria-hidden="true" class="fa fa-chevron-down"></i>
+            </button>
+
+            <button class="btn" [style.display]="!edt.vigente ? 'inline' : 'none'" pTooltip="Reativar edital" tooltipPosition="top" (click)="reativarEdital(edt)">
+              <i aria-hidden="true" class="fa fa-chevron-up"></i>
+            </button>
+          </ng-template>
+        </p-column>
+
+      </p-dataTable>
+    </div>
+
+  </div>
+
+</div>

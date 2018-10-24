@@ -1,0 +1,9 @@
+.navbar {
+  padding: 5px 0;
+  background-color: #20B2AA;
+}
+
+.btn.ativo {
+  background-color: #128e87;
+  border-radius: 10px 0px 10px 0px;
+}

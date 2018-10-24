@@ -1,0 +1,58 @@
+<div class="container">
+
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>{{editando ? 'Edição de' : 'Novo'}} Aluno</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <span class="ui-float-label">
+          <input type="text" pInputText name="nome"
+          ngModel #nome="ngModel" [(ngModel)]="aluno.nome" required>
+          <label>Nome</label>
+        </span>
+
+        <app-message [control]="nome" error="required"
+          text="Informe o nome."></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <span class="ui-float-label">
+          <input type="number" pInputText name="matricula"
+          ngModel #matricula="ngModel"
+          [(ngModel)]="aluno.login" required minlength="12" maxlength="12">
+          <label>Matrícula</label>
+        </span>
+
+        <app-message [control]="matricula" error="required"
+          text="Informe a matrícula."></app-message>
+        <app-message [control]="matricula" error="minlength"
+          text="Mínimo de 12 caracteres"></app-message>
+      </div>
+
+      <div class="ui-g-6 ui-fluid">
+        <label>Edital referente</label>
+        <p-dropdown [options]="editais" placeholder="Selecione"
+        [autoWidth]="false" [filter]="true" name="edital"
+        ngModel #edital="ngModel"
+        [(ngModel)]="aluno.edital" optionLabel="numero" required></p-dropdown>
+      </div>
+
+      <div class="ui-g-12">
+        <button class="btn" type="submit">
+          <i aria-hidden="true" class="fa fa-save"></i>
+          Salvar
+        </button>
+        <a class="btn" type="button" style="text-decoration: none" routerLink="/alunos">
+          <i aria-hidden="true" class="fa fa-arrow-left"></i>
+          Voltar
+        </a>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

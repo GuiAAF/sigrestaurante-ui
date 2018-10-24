@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #404c51;
+}
+
+label {
+  font-weight: bold;
+}
+
+@media (min-width: 1200px){
+  .container {
+    width: 800px;
+    margin: 0 auto;
+  }
+}
+
+.btn {
+  border-radius: 24px;
+  margin: 2px;
+  color: #fff;
+  background-color: #20B2AA;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+
+}
+
+.btn:hover{
+	background-color: #128e87;
+}
+
+.btn-sair{
+  margin: 2px;
+  float: right;
+  color: #fff;
+  background-color: #20B2AA;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.ui-paginator .ui-paginator-page.ui-state-active {
+  background: #20B2AA;
+  color: #ffffff;
+  border-color: #20B2AA;
+}
+
+.ui-togglebutton.ui-button.ui-state-active, .ui-selectbutton .ui-button.ui-state-active {
+  border: 2px solid #20B2AA;
+  background: #20B2AA;
+  color: #FFFFFF;
+}
+
+.ui-dropdown-filter-container {
+  width: 100%;
+}
+
+.ui-state-highlight {
+  border-color: #20B2AA;
+  background-color: #20B2AA;
+  color: #FFFFFF;
+}
