@@ -7,3 +7,56 @@
   background-color: #128e87;
   border-radius: 10px 0px 10px 0px;
 }
+
+@media screen and (max-width: 64em){
+  .menu-button {
+      display: none;
+  }
+
+}
+
+.navbar-toggle {
+  color: #fff;
+  font-size: 30px !important;
+}
+
+@media screen and (min-width: 64em){
+  .navbar-toggle {
+      display: none;
+  }
+
+}
+
+.navbar-usuario {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #000000;
+
+  text-transform: uppercase;
+  font-weight: bold;
+  color: rgb(17, 1, 1);
+}
+
+.navbar-menuitem {
+  padding: 15px;
+}
+
+.navbar-menuitem a {
+  color: #c0bbb7;
+  text-decoration: none;
+}
+
+.navbar-menuitem a:hover {
+  color: #fff;
+}
+
+.navbar-menuitem.ativo {
+  background-color: #494541;
+}
+
+.navbar-menu {
+
+  background-color: #3a3633;
+
+  list-style: none;
+}

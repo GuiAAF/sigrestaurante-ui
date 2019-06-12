@@ -19,7 +19,7 @@ export class LoginComponent {
   login(login: string, senha: string) {
     this.creds.login = login;
     this.creds.senha = senha;
-    this.auth.login(this.creds);
+    this.auth.login(login, senha);
   }
 
 }

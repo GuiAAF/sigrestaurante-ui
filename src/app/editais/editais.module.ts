@@ -13,6 +13,7 @@ import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { ButtonModule } from 'primeng/components/button/button';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { CardModule } from 'primeng/card';
 
 import { EditalCadastroComponent } from './edital-cadastro/edital-cadastro.component';
 import { EditaisPesquisaComponent } from './editais-pesquisa/editais-pesquisa.component';
@@ -31,6 +32,7 @@ import { SharedModule } from './../shared/shared.module';
     CalendarModule,
     SelectButtonModule,
     RouterModule,
+    CardModule,
 
     SharedModule,
     EditalRoutingModule

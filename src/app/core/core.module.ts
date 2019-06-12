@@ -8,7 +8,8 @@ import { JwtHelper } from 'angular2-jwt';
 import { ConfirmationService } from 'primeng/components/common/api';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { MenubarModule } from 'primeng/menubar';
-import {SplitButtonModule} from 'primeng/splitbutton';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import {SidebarModule} from 'primeng/sidebar';
 
 import { ToastyModule } from 'ng2-toasty';
 
@@ -28,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     ConfirmDialogModule,
     MenubarModule,
     RouterModule,
-    SplitButtonModule
+    SplitButtonModule,
+    SidebarModule
+    
   ],
   declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [NavbarComponent,

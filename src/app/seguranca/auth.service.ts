@@ -1,48 +1,32 @@
-import { HttpClient } from '@angular/common/http';
-import { CredenciaisDTO } from './../core/model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JwtHelper } from 'angular2-jwt';
 
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService {
 
-    url = 'http://localhost:8080';
-    jwtPayload: any;
+  oauthTokenUrl = 'http://localhost:8080/oauth/token';
 
-    constructor(private http: HttpClient, private jwtHelper: JwtHelper) {
-        this.carregarToken();
-    }
+  constructor(private http: HttpClient) { }
+
+  login(usuario: string, senha: string): Promise<void> {
+
+    console.log(usuario, senha);
+    const headers = new HttpHeaders()
+        .append('Content-Type', 'application/x-www-form-urlencoded')
+        .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
+
+    const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
 
-    login(creds: CredenciaisDTO): Promise<void> {
-        return this.http.post(
-            `${this.url}/login`,
-            creds,
-            {
-                observe: 'response',
-                responseType: 'text'
-            }).toPromise()
-            .then(response => {
-              console.log(response);
-              this.armazenarToken(response.headers.get('Authorization'));
-            })
-            .catch(response => {
-              console.log(response);
-            });
-    }
-
-    private armazenarToken(token: string) {
-      this.jwtPayload = this.jwtHelper.decodeToken(token);
-      localStorage.setItem('token', token);
-    }
-
-    private carregarToken() {
-      const token = localStorage.getItem('token');
-
-      if (token) {
-        this.armazenarToken(token);
-      }
-    }
+    return this.http.post(this.oauthTokenUrl, body, { headers })
+      .toPromise()
+      .then(response => {
+        console.log(response);
+      })
+      .catch(response => {
+        console.log(response);
+      });
+  }
 }

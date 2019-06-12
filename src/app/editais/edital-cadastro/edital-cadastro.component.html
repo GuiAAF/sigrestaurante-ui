@@ -1,49 +1,52 @@
 <div class="container">
-  <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
-
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <h1>{{editando ? 'Edição de' : 'Novo'}} Edital</h1>
+  <div class="card-novo">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+  
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <h1>{{editando ? 'Edição de' : 'Novo'}} Edital</h1>
+        </div>
+  
+        <div class="ui-g-12 ui-fluid">
+          <span class="ui-float-label">
+            <input id="float-input" type="text" pInputText name="numero" ngModel #numero="ngModel" [(ngModel)]="edital.numero" required>
+            <label>Número</label>
+          </span>
+  
+          <app-message [control]="numero" error="required" text="Informe o número."></app-message>
+        </div>
+  
+        <div class=" ui-g-6 ui-fluid">
+          <label>Data de início</label>
+          <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="false" [monthNavigator]="true" [yearNavigator]="true" yearRange="2010:2100"
+            required name="dataInicio" ngModel #dataInicio="ngModel" [(ngModel)]="edital.dataInicio"></p-calendar>
+  
+          <app-message [control]="dataInicio" error="required" text="Informe a data de início."></app-message>
+  
+        </div>
+  
+        <div class=" ui-g-6 ui-fluid">
+          <label>Data de termino</label>
+          <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="false" [monthNavigator]="true" [yearNavigator]="true" yearRange="2010:2100"
+            required name="dataTermino" ngModel #dataTermino="ngModel" [(ngModel)]="edital.dataTermino"></p-calendar>
+  
+          <app-message [control]="dataTermino" error="required" text="Informe a data de termino."></app-message>
+  
+        </div>
+        <div class="ui-g-6">
+          <button class="btn" type="submit">
+            <i aria-hidden="true" class="fa fa-save"></i>
+            Salvar
+          </button>
+          <a class="btn" style="text-decoration: none" routerLink="/editais">
+            <i aria-hidden="true" class="fa fa-arrow-left"></i>
+            Voltar
+          </a>
+        </div>
       </div>
+  
+    </form>
 
-      <div class="ui-g-12 ui-fluid">
-        <span class="ui-float-label">
-          <input id="float-input" type="text" pInputText name="numero" ngModel #numero="ngModel" [(ngModel)]="edital.numero" required>
-          <label>Número</label>
-        </span>
-
-        <app-message [control]="numero" error="required" text="Informe o número."></app-message>
-      </div>
-
-      <div class=" ui-g-6 ui-fluid">
-        <label>Data de início</label>
-        <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="false" [monthNavigator]="true" [yearNavigator]="true" yearRange="2010:2100"
-          required name="dataInicio" ngModel #dataInicio="ngModel" [(ngModel)]="edital.dataInicio"></p-calendar>
-
-        <app-message [control]="dataInicio" error="required" text="Informe a data de início."></app-message>
-
-      </div>
-
-      <div class=" ui-g-6 ui-fluid">
-        <label>Data de termino</label>
-        <p-calendar dateFormat="dd/mm/yy" [readonlyInput]="false" [monthNavigator]="true" [yearNavigator]="true" yearRange="2010:2100"
-          required name="dataTermino" ngModel #dataTermino="ngModel" [(ngModel)]="edital.dataTermino"></p-calendar>
-
-        <app-message [control]="dataTermino" error="required" text="Informe a data de termino."></app-message>
-
-      </div>
-      <div class="ui-g-6">
-        <button class="btn" type="submit">
-          <i aria-hidden="true" class="fa fa-save"></i>
-          Salvar
-        </button>
-        <a class="btn" style="text-decoration: none" routerLink="/editais">
-          <i aria-hidden="true" class="fa fa-arrow-left"></i>
-          Voltar
-        </a>
-      </div>
-    </div>
-
-  </form>
+  </div>
 
 </div>
